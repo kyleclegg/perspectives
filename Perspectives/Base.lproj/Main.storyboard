@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
-        <!--Perspectives-->
+        <!--My Collections-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Perspectives" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CollectionsViewController" customModule="Perspectives" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -58,13 +58,17 @@
                             <constraint firstItem="2eY-LS-y6X" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="z2e-jy-mcc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Perspectives" id="fLT-Qa-3g7">
+                    <navigationItem key="navigationItem" title="My Collections" id="fLT-Qa-3g7">
+                        <barButtonItem key="backBarButtonItem" title=" " id="vYF-a3-OMh"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vW0-dR-eyI">
                             <connections>
                                 <segue destination="MVA-lC-u70" kind="show" id="deW-NN-UEC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="2eY-LS-y6X" id="7Oy-J5-20N"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -73,7 +77,7 @@
         <!--Add Collection-->
         <scene sceneID="xk7-FH-2KF">
             <objects>
-                <viewController id="MVA-lC-u70" sceneMemberID="viewController">
+                <viewController id="MVA-lC-u70" customClass="AddCollectionViewController" customModule="Perspectives" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZG8-Df-TeL"/>
                         <viewControllerLayoutGuide type="bottom" id="mMS-hM-BX2"/>
@@ -81,10 +85,35 @@
                     <view key="view" contentMode="scaleToFill" id="MG9-N4-wrJ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Vi-fe-kLQ">
+                                <rect key="frame" x="20" y="84" width="560" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="St6-em-5eW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textField>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2Vi-fe-kLQ" firstAttribute="leading" secondItem="MG9-N4-wrJ" secondAttribute="leading" constant="20" id="J65-1Q-wem"/>
+                            <constraint firstAttribute="trailing" secondItem="2Vi-fe-kLQ" secondAttribute="trailing" constant="20" id="ZAx-dO-3oJ"/>
+                            <constraint firstItem="2Vi-fe-kLQ" firstAttribute="top" secondItem="ZG8-Df-TeL" secondAttribute="bottom" constant="20" id="wVa-NY-Ubo"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Collection" id="mNK-WK-kxt"/>
+                    <navigationItem key="navigationItem" title="Add Collection" id="mNK-WK-kxt">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Rer-wR-8AP">
+                            <connections>
+                                <action selector="saveCollection:" destination="MVA-lC-u70" id="nW5-04-fgB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nameTextField" destination="2Vi-fe-kLQ" id="gxV-GK-xDD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T4P-WJ-aSR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
