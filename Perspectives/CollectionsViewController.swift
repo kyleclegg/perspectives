@@ -22,7 +22,7 @@ class CollectionsViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
     }
     
     // MARK: - NSFetchedResultsController

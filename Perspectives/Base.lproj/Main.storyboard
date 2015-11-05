@@ -5,6 +5,43 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
+        <!--Sign In View Controller-->
+        <scene sceneID="GpT-Fk-5V1">
+            <objects>
+                <viewController storyboardIdentifier="SignInViewController" id="J9H-3X-lfd" customClass="SignInViewController" customModule="Perspectives" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pqq-xz-QGg"/>
+                        <viewControllerLayoutGuide type="bottom" id="aMp-ux-yMe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="L0R-cs-cOG">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ny-Zc-7fq">
+                                <rect key="frame" x="20" y="530" width="560" height="50"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="R3C-RR-Ek4"/>
+                                </constraints>
+                                <state key="normal" title="Sign In"/>
+                                <connections>
+                                    <action selector="signInPressed:" destination="J9H-3X-lfd" eventType="touchUpInside" id="bA9-Gl-q00"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.30588235289999999" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="0ny-Zc-7fq" firstAttribute="leading" secondItem="L0R-cs-cOG" secondAttribute="leading" constant="20" id="Y0W-zT-O6y"/>
+                            <constraint firstAttribute="trailing" secondItem="0ny-Zc-7fq" secondAttribute="trailing" constant="20" id="cto-BJ-f5e"/>
+                            <constraint firstItem="aMp-ux-yMe" firstAttribute="top" secondItem="0ny-Zc-7fq" secondAttribute="bottom" constant="20" id="hAG-Df-AvV"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GgA-QB-II9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1028" y="-306"/>
+        </scene>
         <!--My Collections-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -122,7 +159,7 @@
         <!--Navigation Controller-->
         <scene sceneID="OCs-Dy-z69">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5cs-Sn-x1E" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="RootNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="5cs-Sn-x1E" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vMR-1I-76h">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

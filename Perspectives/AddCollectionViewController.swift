@@ -18,11 +18,11 @@ class AddCollectionViewController: UIViewController {
         
     }
     
-    // MARK: - Actions
+    // MARK: Actions
     
     @IBAction func saveCollection(sender: AnyObject) {
         
-        if (self.nameTextField.text!.isEmpty) { return }
+        if self.nameTextField.text!.isEmpty { return }
         
         let managedContext = CoreDataStack.sharedManager.context
         
