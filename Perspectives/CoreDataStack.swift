@@ -57,9 +57,7 @@ class CoreDataStack {
         let fileManager = NSFileManager.defaultManager()
         
         let urls = fileManager.URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask)
-        
         let applicationSupportDirectoryURL = urls.last!
-        
         let applicationSupportDirectory = applicationSupportDirectoryURL.URLByAppendingPathComponent(applicationDocumentsDirectoryName)
         
         do {
@@ -97,10 +95,9 @@ class CoreDataStack {
         return self.applicationDocumentsDirectory.URLByAppendingPathComponent(mainStoreFileName)
     }()
 
-    // Main context
+    // Managed object context for the application (which is already bound to the persistent store coordinator for the application)
     lazy var context: NSManagedObjectContext = {
-        var managedObjectContext = NSManagedObjectContext(
-            concurrencyType: .MainQueueConcurrencyType)
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator
         return managedObjectContext
     }()

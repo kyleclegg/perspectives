@@ -8,6 +8,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Perspective" representedClassName=".Perspective" syncable="YES">
+        <attribute name="about" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="collectionId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="createdBy" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -23,6 +24,6 @@
     <elements>
         <element name="User" positionX="-63" positionY="-18" width="128" height="103"/>
         <element name="Collection" positionX="153" positionY="117" width="128" height="120"/>
-        <element name="Perspective" positionX="115" positionY="-18" width="128" height="118"/>
+        <element name="Perspective" positionX="115" positionY="-18" width="128" height="133"/>
     </elements>
 </model>

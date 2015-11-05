@@ -19,5 +19,6 @@ extension Perspective {
     @NSManaged var name: String?
     @NSManaged var createdBy: NSNumber?
     @NSManaged var collectionId: NSNumber?
+    @NSManaged var about: String?
 
 }
