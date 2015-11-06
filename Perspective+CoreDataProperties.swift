@@ -17,7 +17,6 @@ extension Perspective {
     @NSManaged var perspectiveId: NSNumber?
     @NSManaged var createdDate: NSDate?
     @NSManaged var name: String?
-    @NSManaged var createdBy: NSNumber?
     @NSManaged var collectionId: NSNumber?
     @NSManaged var about: String?
 

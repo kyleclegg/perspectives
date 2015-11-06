@@ -35,7 +35,16 @@ class AddCollectionViewController: UIViewController {
         
         let defaults = NSUserDefaults.standardUserDefaults()
         if let userId = defaults.objectForKey(Constants.UserDefaults.userId) as? NSNumber {
-            collection.createdBy = userId
+            
+            let fetchRequest = NSFetchRequest(entityName: "User")
+            fetchRequest.fetchBatchSize = 1
+            fetchRequest.predicate = NSPredicate(format: "userId = %@", userId)
+            do {
+                let fetchResults = (try managedContext.executeFetchRequest(fetchRequest)) as? [User]
+                collection.owner = fetchResults?.first
+            } catch let error as NSError {
+                print("Fetch failed: \(error.localizedDescription)")
+            }
         }
         
         if !self.aboutTextView.text!.isEmpty {

@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  Perspectives
 //
-//  Created by Kyle Clegg on 11/5/15.
+//  Created by Kyle Clegg on 11/6/15.
 //  Copyright © 2015 Kyle Clegg. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -18,5 +18,6 @@ extension User {
     @NSManaged var password: String?
     @NSManaged var name: String?
     @NSManaged var userId: NSNumber?
+    @NSManaged var collections: NSSet?
 
 }

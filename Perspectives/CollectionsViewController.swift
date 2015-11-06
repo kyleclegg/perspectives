@@ -88,6 +88,13 @@ class CollectionsViewController: UIViewController, UITableViewDataSource, UITabl
         let cell = tableView.dequeueReusableCellWithIdentifier("CollectionCell", forIndexPath: indexPath)
         let collection = fetchedResultsController.objectAtIndexPath(indexPath) as! Collection
         
+        if let owner = collection.owner {
+            print("collection \(collection.name!)'s owner is \(owner.name!)")
+        }
+        else {
+            print("collection \(collection.name!) has no owner")
+        }
+        
         cell.textLabel?.text = collection.name
         
         return cell
