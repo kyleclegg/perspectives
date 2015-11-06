@@ -41,7 +41,8 @@ class SignInViewController: UIViewController {
             dismissSignIn()
             
             let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setBool(true, forKey: "loggedIn")
+            defaults.setBool(true, forKey: Constants.UserDefaults.loggedIn)
+            defaults.setObject(user.userId, forKey: Constants.UserDefaults.userId)
             
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")

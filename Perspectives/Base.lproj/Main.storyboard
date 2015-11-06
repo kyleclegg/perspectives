@@ -132,12 +132,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oJb-U4-YSN">
+                                <rect key="frame" x="20" y="122" width="560" height="458"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="oJb-U4-YSN" firstAttribute="leading" secondItem="MG9-N4-wrJ" secondAttribute="leading" constant="20" id="9Bx-fM-h4O"/>
+                            <constraint firstAttribute="trailing" secondItem="oJb-U4-YSN" secondAttribute="trailing" constant="20" id="EIe-gf-Xd0"/>
+                            <constraint firstItem="oJb-U4-YSN" firstAttribute="top" secondItem="2Vi-fe-kLQ" secondAttribute="bottom" constant="8" id="I5D-UV-kMH"/>
                             <constraint firstItem="2Vi-fe-kLQ" firstAttribute="leading" secondItem="MG9-N4-wrJ" secondAttribute="leading" constant="20" id="J65-1Q-wem"/>
                             <constraint firstAttribute="trailing" secondItem="2Vi-fe-kLQ" secondAttribute="trailing" constant="20" id="ZAx-dO-3oJ"/>
+                            <constraint firstItem="mMS-hM-BX2" firstAttribute="top" secondItem="oJb-U4-YSN" secondAttribute="bottom" constant="20" id="qcz-N1-iD0"/>
                             <constraint firstItem="2Vi-fe-kLQ" firstAttribute="top" secondItem="ZG8-Df-TeL" secondAttribute="bottom" constant="20" id="wVa-NY-Ubo"/>
                         </constraints>
                     </view>
@@ -149,6 +160,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="aboutTextView" destination="oJb-U4-YSN" id="p04-Wr-Hh4"/>
                         <outlet property="nameTextField" destination="2Vi-fe-kLQ" id="gxV-GK-xDD"/>
                     </connections>
                 </viewController>

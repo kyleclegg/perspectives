@@ -24,6 +24,7 @@
 		D752C06E1BEB605B0076BE1E /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752C06B1BEB605B0076BE1E /* User+CoreDataProperties.swift */; };
 		D752C0711BEB64E00076BE1E /* Perspective+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752C0701BEB64E00076BE1E /* Perspective+CoreDataProperties.swift */; };
 		D752C0731BEB66400076BE1E /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752C0721BEB66400076BE1E /* SignInViewController.swift */; };
+		D752C0771BEC974A0076BE1E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752C0761BEC974A0076BE1E /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		D752C06B1BEB605B0076BE1E /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "../User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D752C0701BEB64E00076BE1E /* Perspective+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Perspective+CoreDataProperties.swift"; path = "../Perspective+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D752C0721BEB66400076BE1E /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		D752C0761BEC974A0076BE1E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				D752C01A1BE497CF0076BE1E /* Main.storyboard */,
 				D752C0491BE89AFC0076BE1E /* Model */,
 				D752C0741BEB684C0076BE1E /* View */,
+				D752C0751BEC97200076BE1E /* Utility */,
 				D752C0201BE497CF0076BE1E /* Assets.xcassets */,
 				D752C0221BE497CF0076BE1E /* LaunchScreen.storyboard */,
 				D752C0251BE497CF0076BE1E /* Info.plist */,
@@ -169,6 +172,14 @@
 				D752C0721BEB66400076BE1E /* SignInViewController.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		D752C0751BEC97200076BE1E /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				D752C0761BEC974A0076BE1E /* Constants.swift */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +320,7 @@
 				D752C0711BEB64E00076BE1E /* Perspective+CoreDataProperties.swift in Sources */,
 				D752C04B1BE89B190076BE1E /* CoreDataStack.swift in Sources */,
 				D752C0611BEB51650076BE1E /* User.swift in Sources */,
+				D752C0771BEC974A0076BE1E /* Constants.swift in Sources */,
 				D752C0631BEB51650076BE1E /* Collection.swift in Sources */,
 				D752C0731BEB66400076BE1E /* SignInViewController.swift in Sources */,
 				D752C05F1BEB51650076BE1E /* Perspective.swift in Sources */,

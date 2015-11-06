@@ -14,10 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
         
         let defaults = NSUserDefaults.standardUserDefaults()
-        let loggedIn = defaults.boolForKey("loggedIn")
+        let loggedIn = defaults.boolForKey(Constants.UserDefaults.loggedIn)
         if !loggedIn {
             // switch root view controller
             let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)

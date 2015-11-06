@@ -12,6 +12,7 @@ import CoreData
 class AddCollectionViewController: UIViewController {
     
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var aboutTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,16 @@ class AddCollectionViewController: UIViewController {
         let collection = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext) as! Collection
 
         collection.name = self.nameTextField.text!
+        collection.createdDate = NSDate()
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let userId = defaults.objectForKey(Constants.UserDefaults.userId) as? NSNumber {
+            collection.createdBy = userId
+        }
+        
+        if !self.aboutTextView.text!.isEmpty {
+            collection.about = self.aboutTextView.text!
+        }
         
         do {
             try managedContext.save()
