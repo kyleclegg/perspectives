@@ -9,18 +9,22 @@
 import UIKit
 import CoreData
 
-class AddCollectionViewController: UIViewController {
+class AddCollectionViewController: UITableViewController {
     
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var aboutTextView: UITextView!
+    @IBOutlet weak var descriptionTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
     }
     
     // MARK: Actions
     
+    @IBAction func cancel(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
     @IBAction func saveCollection(sender: AnyObject) {
         
         if self.nameTextField.text!.isEmpty { return }
@@ -47,14 +51,14 @@ class AddCollectionViewController: UIViewController {
             }
         }
         
-        if !self.aboutTextView.text!.isEmpty {
-            collection.about = self.aboutTextView.text!
+        if !self.descriptionTextField.text!.isEmpty {
+            collection.about = self.descriptionTextField.text!
         }
         
         do {
             try managedContext.save()
             print("Successfully saved")
-            navigationController?.popViewControllerAnimated(true)
+            self.dismissViewControllerAnimated(true, completion: nil)
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
         }
