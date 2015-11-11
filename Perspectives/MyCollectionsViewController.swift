@@ -14,14 +14,13 @@ class MyCollectionsViewController: UIViewController, UITableViewDataSource, UITa
     @IBOutlet weak var tableView: UITableView!
     
     let users = [NSManagedObject]()
-    
     lazy var fetchedResultsController:NSFetchedResultsController = self.collectionsfetchedResultController()
     
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = NSLocalizedString("MY_COLLECTIONS", comment: "")
     }
     
     // MARK: - NSFetchedResultsController
@@ -89,7 +88,9 @@ class MyCollectionsViewController: UIViewController, UITableViewDataSource, UITa
         
         if let owner = collection.owner {
             print("\(collection.name!) owner \(owner.name!)")
-            print("\(collection.name!) description \(collection.about!)")
+            if let collectionDescription = collection.about {
+                print("\(collection.name!) description \(collectionDescription)")
+            }
         }
         else {
             print("collection \(collection.name!) has no owner")
@@ -107,6 +108,7 @@ class MyCollectionsViewController: UIViewController, UITableViewDataSource, UITa
         let collection = fetchedResultsController.objectAtIndexPath(indexPath) as! Collection
         let collectionViewController = self.storyboard!.instantiateViewControllerWithIdentifier("CollectionViewController") as! CollectionViewController
         collectionViewController.collection = collection
+        print("collection: \(collection.name!)")
         self.navigationController!.pushViewController(collectionViewController, animated: true)
     }
 

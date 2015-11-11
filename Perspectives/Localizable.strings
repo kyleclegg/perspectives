@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  Perspectives
+
+  Created by Kyle Clegg on 11/11/15.
+  Copyright © 2015 Kyle Clegg. All rights reserved.
+*/
+
+// Collections
+"MY_COLLECTIONS" = "My Collections";
+"EDIT_COLLECTION" = "Edit Collection";
+"ADD_COLLECTION" = "Add Collection";
+
+// Alerts
+"CANCEL" = "Cancel";
+"UPLOAD_PHOTO" = "Upload Photo";
+"TAKE_PHOTO" = "Take Photo";
+"PHOTO_LIBRARY" = "Photo Library";

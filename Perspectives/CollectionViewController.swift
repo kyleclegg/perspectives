@@ -12,6 +12,7 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var coverImageView: UIImageView!
     
     var collection:Collection?
     
@@ -19,10 +20,21 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = self.collection!.name
-        self.nameLabel.text! = self.collection!.name!
-        self.descriptionLabel.text! = self.collection!.about!
+
+        // Populate with content from collection
+        if let selectedCollection = self.collection {
+            self.title = selectedCollection.name
+            self.nameLabel.text! = selectedCollection.name!
+            if let collectionDescription = selectedCollection.about {
+                self.descriptionLabel.text! = collectionDescription
+            } else {
+                self.descriptionLabel.text! = ""
+            }
+            if let imageData = selectedCollection.image {
+                self.coverImageView.image! = UIImage(data: imageData)!
+        }
     }
+}
     
     // MARK: - Segue 
     

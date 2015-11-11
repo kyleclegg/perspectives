@@ -4,6 +4,7 @@
         <attribute name="about" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="collectionId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="collections" inverseEntity="User" syncable="YES"/>
         <relationship name="perspectives" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Perspective" inverseName="collection" inverseEntity="Perspective" syncable="YES"/>
@@ -24,8 +25,8 @@
         <relationship name="collections" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Collection" inverseName="owner" inverseEntity="Collection" syncable="YES"/>
     </entity>
     <elements>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="118"/>
-        <element name="Collection" positionX="153" positionY="117" width="128" height="133"/>
+        <element name="Collection" positionX="153" positionY="117" width="128" height="150"/>
         <element name="Perspective" positionX="115" positionY="-18" width="128" height="133"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="118"/>
     </elements>
 </model>

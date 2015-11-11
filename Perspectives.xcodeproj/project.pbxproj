@@ -27,6 +27,8 @@
 		D752C07A1BEC9E5D0076BE1E /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752C0781BEC9E5D0076BE1E /* User+CoreDataProperties.swift */; };
 		D752C07B1BEC9E5D0076BE1E /* Collection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752C0791BEC9E5D0076BE1E /* Collection+CoreDataProperties.swift */; };
 		D752C07E1BEE189C0076BE1E /* texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D752C07D1BEE189C0076BE1E /* texture.jpg */; };
+		D774F1121BF342AC009B1FCC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D774F1111BF342AC009B1FCC /* Localizable.strings */; };
+		D774F1161BF34DD9009B1FCC /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D774F1151BF34DD9009B1FCC /* UIImage+Additions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		D752C0781BEC9E5D0076BE1E /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "../User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D752C0791BEC9E5D0076BE1E /* Collection+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Collection+CoreDataProperties.swift"; path = "../Collection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D752C07D1BEE189C0076BE1E /* texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = texture.jpg; sourceTree = "<group>"; };
+		D774F1111BF342AC009B1FCC /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		D774F1151BF34DD9009B1FCC /* UIImage+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,7 +187,9 @@
 		D752C0751BEC97200076BE1E /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				D774F1111BF342AC009B1FCC /* Localizable.strings */,
 				D752C0761BEC974A0076BE1E /* Constants.swift */,
+				D774F1151BF34DD9009B1FCC /* UIImage+Additions.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -264,6 +270,7 @@
 				TargetAttributes = {
 					D752C0121BE497CF0076BE1E = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 93CQ4SMJ2W;
 					};
 					D752C0291BE497CF0076BE1E = {
 						CreatedOnToolsVersion = 7.1;
@@ -300,6 +307,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D774F1121BF342AC009B1FCC /* Localizable.strings in Resources */,
 				D752C0241BE497CF0076BE1E /* LaunchScreen.storyboard in Resources */,
 				D752C0211BE497CF0076BE1E /* Assets.xcassets in Resources */,
 				D752C01C1BE497CF0076BE1E /* Main.storyboard in Resources */,
@@ -332,6 +340,7 @@
 				D752C0191BE497CF0076BE1E /* MyCollectionsViewController.swift in Sources */,
 				D752C0171BE497CF0076BE1E /* AppDelegate.swift in Sources */,
 				D752C0711BEB64E00076BE1E /* Perspective+CoreDataProperties.swift in Sources */,
+				D774F1161BF34DD9009B1FCC /* UIImage+Additions.swift in Sources */,
 				D72303951BF2C49100C2AF25 /* CollectionViewController.swift in Sources */,
 				D752C04B1BE89B190076BE1E /* CoreDataStack.swift in Sources */,
 				D752C0611BEB51650076BE1E /* User.swift in Sources */,
@@ -481,6 +490,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Perspectives/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kyleclegg.Perspectives;
@@ -492,6 +502,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Perspectives/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kyleclegg.Perspectives;

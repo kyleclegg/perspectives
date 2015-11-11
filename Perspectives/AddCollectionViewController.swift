@@ -9,23 +9,34 @@
 import UIKit
 import CoreData
 
-class AddCollectionViewController: UITableViewController {
+class AddCollectionViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var coverImageView: UIImageView!
     
     var collection:Collection?
+    var photoUpdated:Bool = false
     
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Populate with content from incoming collection
         if let incomingCollection = self.collection {
-            print("incoming collection \(incomingCollection.name!)")
             self.nameTextField.text! = incomingCollection.name!
-            self.descriptionTextField.text! = incomingCollection.about!
+            if let collectionDescription = collection!.about {
+                self.descriptionTextField.text! = collectionDescription
+            }
+            if let imageData = self.collection!.image {
+                self.coverImageView.image! = UIImage(data: imageData)!
+            }
+            
+            self.title = NSLocalizedString("EDIT_COLLECTION", comment: "")
             self.navigationItem.leftBarButtonItem = nil
+        } else {
+            self.title = NSLocalizedString("ADD_COLLECTION", comment: "")
         }
     }
     
@@ -46,6 +57,34 @@ class AddCollectionViewController: UITableViewController {
         }
     }
     
+    @IBAction func uploadPhoto(sender: AnyObject) {
+        // Setup alert controller
+        let alertController: UIAlertController = UIAlertController(title: NSLocalizedString("UPLOAD_PHOTO", comment: ""), message: "", preferredStyle: .ActionSheet)
+        let cancelAction: UIAlertAction = UIAlertAction(title: NSLocalizedString("CANCEL", comment: ""), style: .Cancel) { action -> Void in
+            // Do nothing
+            
+        }
+        alertController.addAction(cancelAction)
+        
+        // Add camera option
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+            let takePhotoAction: UIAlertAction = UIAlertAction(title: NSLocalizedString("TAKE_PHOTO", comment: ""), style: .Default) { action -> Void in
+                self.takePhoto()
+            }
+            alertController.addAction(takePhotoAction)
+        }
+        
+        // Add library option
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
+            let choosePhotoAction: UIAlertAction = UIAlertAction(title: NSLocalizedString("PHOTO_LIBRARY", comment: ""), style: .Default) { action -> Void in
+                self.selectPhotoFromLibrary()
+            }
+            alertController.addAction(choosePhotoAction)
+        }
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
     // MARK: - Convenience
     
     func saveUpdatedCollection() {
@@ -57,6 +96,11 @@ class AddCollectionViewController: UITableViewController {
             
             if !self.descriptionTextField.text!.isEmpty {
                 incomingCollection.about = self.descriptionTextField.text!
+            }
+            if self.photoUpdated == true {
+                if let selectedImage = self.coverImageView.image {
+                    incomingCollection.image = NSData(data: UIImagePNGRepresentation(selectedImage)!)
+                }
             }
             
             do {
@@ -95,6 +139,11 @@ class AddCollectionViewController: UITableViewController {
         if !self.descriptionTextField.text!.isEmpty {
             collection.about = self.descriptionTextField.text!
         }
+        if self.photoUpdated == true {
+            if let selectedImage = self.coverImageView.image {
+                collection.image = NSData(data: UIImagePNGRepresentation(selectedImage)!)
+            }
+        }
         
         do {
             try managedContext.save()
@@ -103,6 +152,46 @@ class AddCollectionViewController: UITableViewController {
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
         }
+    }
+    
+    func takePhoto() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .Camera
+        presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    func selectPhotoFromLibrary() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .PhotoLibrary
+        presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    // MARK: - UIImagePickerControllerDelegate
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        var selectedImage: UIImage
+        
+        if let possibleImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+            selectedImage = possibleImage
+        } else if let possibleImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+            selectedImage = possibleImage
+        } else {
+            return
+        }
+        
+        let resizedImage = selectedImage.resizeImageWithAspectFit(selectedImage, size: CGSizeMake(1200, 1200))
+        self.coverImageView.image = resizedImage
+        print("original size: \(selectedImage.size)")
+        print("resized size: \(resizedImage.size)")
+        self.photoUpdated = true
+        
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
 }

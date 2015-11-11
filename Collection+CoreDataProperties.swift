@@ -2,7 +2,7 @@
 //  Collection+CoreDataProperties.swift
 //  Perspectives
 //
-//  Created by Kyle Clegg on 11/10/15.
+//  Created by Kyle Clegg on 11/11/15.
 //  Copyright © 2015 Kyle Clegg. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -18,6 +18,7 @@ extension Collection {
     @NSManaged var collectionId: NSNumber?
     @NSManaged var createdDate: NSDate?
     @NSManaged var name: String?
+    @NSManaged var image: NSData?
     @NSManaged var owner: User?
     @NSManaged var perspectives: NSSet?
 
