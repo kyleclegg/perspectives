@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D72303951BF2C49100C2AF25 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72303941BF2C49100C2AF25 /* CollectionViewController.swift */; };
 		D752C0171BE497CF0076BE1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752C0161BE497CF0076BE1E /* AppDelegate.swift */; };
-		D752C0191BE497CF0076BE1E /* CollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752C0181BE497CF0076BE1E /* CollectionsViewController.swift */; };
+		D752C0191BE497CF0076BE1E /* MyCollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752C0181BE497CF0076BE1E /* MyCollectionsViewController.swift */; };
 		D752C01C1BE497CF0076BE1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D752C01A1BE497CF0076BE1E /* Main.storyboard */; };
 		D752C01F1BE497CF0076BE1E /* Perspectives.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D752C01D1BE497CF0076BE1E /* Perspectives.xcdatamodeld */; };
 		D752C0211BE497CF0076BE1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D752C0201BE497CF0076BE1E /* Assets.xcassets */; };
@@ -46,9 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D72303941BF2C49100C2AF25 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		D752C0131BE497CF0076BE1E /* Perspectives.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perspectives.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D752C0161BE497CF0076BE1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D752C0181BE497CF0076BE1E /* CollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewController.swift; sourceTree = "<group>"; };
+		D752C0181BE497CF0076BE1E /* MyCollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionsViewController.swift; sourceTree = "<group>"; };
 		D752C01B1BE497CF0076BE1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D752C01E1BE497CF0076BE1E /* Perspectives.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Perspectives.xcdatamodel; sourceTree = "<group>"; };
 		D752C0201BE497CF0076BE1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -170,9 +172,10 @@
 		D752C0741BEB684C0076BE1E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D752C0181BE497CF0076BE1E /* CollectionsViewController.swift */,
-				D752C0471BE893F20076BE1E /* AddCollectionViewController.swift */,
 				D752C0721BEB66400076BE1E /* SignInViewController.swift */,
+				D752C0181BE497CF0076BE1E /* MyCollectionsViewController.swift */,
+				D752C0471BE893F20076BE1E /* AddCollectionViewController.swift */,
+				D72303941BF2C49100C2AF25 /* CollectionViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -326,9 +329,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D752C0481BE893F20076BE1E /* AddCollectionViewController.swift in Sources */,
-				D752C0191BE497CF0076BE1E /* CollectionsViewController.swift in Sources */,
+				D752C0191BE497CF0076BE1E /* MyCollectionsViewController.swift in Sources */,
 				D752C0171BE497CF0076BE1E /* AppDelegate.swift in Sources */,
 				D752C0711BEB64E00076BE1E /* Perspective+CoreDataProperties.swift in Sources */,
+				D72303951BF2C49100C2AF25 /* CollectionViewController.swift in Sources */,
 				D752C04B1BE89B190076BE1E /* CoreDataStack.swift in Sources */,
 				D752C0611BEB51650076BE1E /* User.swift in Sources */,
 				D752C0771BEC974A0076BE1E /* Constants.swift in Sources */,
@@ -562,6 +566,7 @@
 				D752C0401BE497CF0076BE1E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D752C0411BE497CF0076BE1E /* Build configuration list for PBXNativeTarget "PerspectivesTests" */ = {
 			isa = XCConfigurationList;
@@ -570,6 +575,7 @@
 				D752C0431BE497CF0076BE1E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D752C0441BE497CF0076BE1E /* Build configuration list for PBXNativeTarget "PerspectivesUITests" */ = {
 			isa = XCConfigurationList;
@@ -578,6 +584,7 @@
 				D752C0461BE497CF0076BE1E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

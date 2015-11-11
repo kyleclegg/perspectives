@@ -9,12 +9,11 @@
 import UIKit
 import CoreData
 
-class CollectionsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
+class MyCollectionsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
     let users = [NSManagedObject]()
-    let collections = [NSManagedObject]()
     
     lazy var fetchedResultsController:NSFetchedResultsController = self.collectionsfetchedResultController()
     
@@ -89,7 +88,8 @@ class CollectionsViewController: UIViewController, UITableViewDataSource, UITabl
         let collection = fetchedResultsController.objectAtIndexPath(indexPath) as! Collection
         
         if let owner = collection.owner {
-            print("collection \(collection.name!)'s owner is \(owner.name!)")
+            print("\(collection.name!) owner \(owner.name!)")
+            print("\(collection.name!) description \(collection.about!)")
         }
         else {
             print("collection \(collection.name!) has no owner")
@@ -103,7 +103,11 @@ class CollectionsViewController: UIViewController, UITableViewDataSource, UITabl
     // MARK: - UITableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("Hi \(indexPath.row)")
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let collection = fetchedResultsController.objectAtIndexPath(indexPath) as! Collection
+        let collectionViewController = self.storyboard!.instantiateViewControllerWithIdentifier("CollectionViewController") as! CollectionViewController
+        collectionViewController.collection = collection
+        self.navigationController!.pushViewController(collectionViewController, animated: true)
     }
 
 }
