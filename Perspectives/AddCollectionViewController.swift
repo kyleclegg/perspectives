@@ -9,11 +9,17 @@
 import UIKit
 import CoreData
 
+protocol EditCollectionDelegate {
+    func editedCollection()
+}
+
 class AddCollectionViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var coverImageView: UIImageView!
+    
+    var editedCollectionDelegate: EditCollectionDelegate?
     
     var collection:Collection?
     var photoUpdated:Bool = false
@@ -47,11 +53,10 @@ class AddCollectionViewController: UITableViewController, UINavigationController
     }
 
     @IBAction func saveCollection(sender: AnyObject) {
-        
         if self.nameTextField.text!.isEmpty { return }
         
         if let _ = self.collection {
-            saveUpdatedCollection()
+            saveEditedCollection()
         } else {
             saveNewCollection()
         }
@@ -87,9 +92,7 @@ class AddCollectionViewController: UITableViewController, UINavigationController
     
     // MARK: - Convenience
     
-    func saveUpdatedCollection() {
-        let managedContext = CoreDataStack.sharedManager.context
-        
+    func saveEditedCollection() {
         if let incomingCollection = self.collection {
         
             incomingCollection.name = self.nameTextField.text!
@@ -103,10 +106,14 @@ class AddCollectionViewController: UITableViewController, UINavigationController
                 }
             }
             
+            let managedContext = CoreDataStack.sharedManager.context
             do {
                 try managedContext.save()
                 print("Successfully saved collection update")
                 self.navigationController!.popViewControllerAnimated(true)
+                if let delegate = self.editedCollectionDelegate {
+                    delegate.editedCollection()
+                }
             } catch let error as NSError  {
                 print("Could not save \(error), \(error.userInfo)")
             }
@@ -115,7 +122,6 @@ class AddCollectionViewController: UITableViewController, UINavigationController
     
     func saveNewCollection() {
         let managedContext = CoreDataStack.sharedManager.context
-        
         let entity =  NSEntityDescription.entityForName("Collection", inManagedObjectContext:managedContext)
         let collection = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext) as! Collection
         

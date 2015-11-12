@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-class CollectionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class CollectionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, EditCollectionDelegate {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -20,7 +21,10 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.populateContent()
+    }
+    
+    func populateContent() {
         // Populate with content from collection
         if let selectedCollection = self.collection {
             self.title = selectedCollection.name
@@ -32,9 +36,9 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
             }
             if let imageData = selectedCollection.image {
                 self.coverImageView.image! = UIImage(data: imageData)!
+            }
         }
     }
-}
     
     // MARK: - Segue 
     
@@ -42,6 +46,7 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
         if segue.identifier! == "EditCollectionSegue" {
             let controller = segue.destinationViewController as! AddCollectionViewController
             controller.collection = self.collection!
+            controller.editedCollectionDelegate = self
         }
     }
     
@@ -71,6 +76,22 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
+    }
+    
+    // MARK: - EditCollectionDelegate
+    
+    func editedCollection() {
+        let managedContext = CoreDataStack.sharedManager.context
+        let fetchRequest = NSFetchRequest(entityName: "Collection")
+        fetchRequest.fetchBatchSize = 1
+        fetchRequest.predicate = NSPredicate(format: "collectionId = %@", self.collection!.collectionId!)
+        do {
+            let fetchResults = (try managedContext.executeFetchRequest(fetchRequest)) as? [Collection]
+            self.collection = fetchResults?.first
+        } catch let error as NSError {
+            print("Fetch failed: \(error.localizedDescription)")
+        }
+        self.populateContent()
     }
 
 }
