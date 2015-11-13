@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import DateTools
 
 class MyCollectionsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate {
 
@@ -95,7 +96,7 @@ class MyCollectionsViewController: UIViewController, UICollectionViewDataSource,
                 cell.imageView.image! = UIImage(data: imageData)!
             }
             if let createdDate = collection.createdDate {
-                
+                cell.timeAgoLabel.text = createdDate.shortTimeAgoSinceNow()
             }
         }
         else {
