@@ -9,11 +9,10 @@
 import UIKit
 import CoreData
 
-class MyCollectionsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
+class MyCollectionsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
-    let users = [NSManagedObject]()
     lazy var fetchedResultsController:NSFetchedResultsController = self.collectionsfetchedResultController()
     
     // MARK: - View lifecycle
@@ -60,12 +59,12 @@ class MyCollectionsViewController: UIViewController, UITableViewDataSource, UITa
     // MARK: - NSFetchedResultsControllerDelegate
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        tableView.reloadData()
+        self.collectionView.reloadData()
     }
     
-    // MARK: - UITableViewDataSource
+    // MARK: - UICollectionViewDataSource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         if let sections = fetchedResultsController.sections {
             return sections.count
         }
@@ -73,7 +72,7 @@ class MyCollectionsViewController: UIViewController, UITableViewDataSource, UITa
         return 0
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let sections = fetchedResultsController.sections {
             let currentSection = sections[section]
             return currentSection.numberOfObjects
@@ -82,34 +81,38 @@ class MyCollectionsViewController: UIViewController, UITableViewDataSource, UITa
         return 0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CollectionCell", forIndexPath: indexPath)
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionCell", forIndexPath: indexPath) as! CollectionCell
         let collection = fetchedResultsController.objectAtIndexPath(indexPath) as! Collection
         
         if let owner = collection.owner {
             print("\(collection.name!) owner \(owner.name!)")
+            cell.nameLabel.text = collection.name
             if let collectionDescription = collection.about {
                 print("\(collection.name!) description \(collectionDescription)")
+            }
+            if let imageData = collection.image {
+                cell.imageView.image! = UIImage(data: imageData)!
+            }
+            if let createdDate = collection.createdDate {
+                
             }
         }
         else {
             print("collection \(collection.name!) has no owner")
         }
         
-        cell.textLabel?.text = collection.name
-        
         return cell
     }
     
-    // MARK: - UITableViewDelegate
+    // MARK: - UICollectionViewDelegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let collection = fetchedResultsController.objectAtIndexPath(indexPath) as! Collection
         let collectionViewController = self.storyboard!.instantiateViewControllerWithIdentifier("CollectionViewController") as! CollectionViewController
         collectionViewController.collection = collection
         print("collection: \(collection.name!)")
         self.navigationController!.pushViewController(collectionViewController, animated: true)
     }
-
+    
 }
