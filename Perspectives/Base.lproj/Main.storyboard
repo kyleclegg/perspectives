@@ -200,9 +200,13 @@
                             <rect key="frame" x="0.0" y="64" width="600" height="176"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="texture.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="wEq-RM-MqO">
+                                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="texture.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="wEq-RM-MqO">
                                     <rect key="frame" x="8" y="8" width="584" height="160"/>
                                     <animations/>
+                                    <gestureRecognizers/>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="vhB-z4-0PO" appends="YES" id="Bdx-7Y-aJ8"/>
+                                    </connections>
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqx-4G-Sws">
                                     <rect key="frame" x="472" y="128" width="120" height="40"/>
@@ -230,6 +234,32 @@
                                 <constraint firstAttribute="trailing" secondItem="wqx-4G-Sws" secondAttribute="trailing" constant="8" id="k3m-fk-tNa"/>
                             </constraints>
                         </view>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="SlL-Xv-zqj">
+                            <rect key="frame" x="0.0" y="435" width="600" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wfQ-US-2ca">
+                                    <rect key="frame" x="240" y="10" width="119" height="30"/>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="119" id="LtC-Ku-n4u"/>
+                                        <constraint firstAttribute="height" constant="30" id="uTQ-hJ-dPU"/>
+                                    </constraints>
+                                    <state key="normal" title="Delete Collection">
+                                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="deleteCollection:" destination="pU5-T4-Ozg" eventType="touchUpInside" id="FUG-IR-d6w"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <animations/>
+                            <color key="backgroundColor" red="0.90980392160000001" green="0.91372549020000005" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="wfQ-US-2ca" firstAttribute="centerX" secondItem="SlL-Xv-zqj" secondAttribute="centerX" id="ZfB-30-loN"/>
+                                <constraint firstItem="wfQ-US-2ca" firstAttribute="centerY" secondItem="SlL-Xv-zqj" secondAttribute="centerY" id="y7O-dv-OxE"/>
+                            </constraints>
+                        </view>
                         <sections>
                             <tableViewSection id="cmh-jh-tgG">
                                 <cells>
@@ -250,7 +280,7 @@
                                                                 <constraint firstAttribute="height" constant="44" id="vbU-dr-fmh"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                         </textField>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bUF-yJ-3ik" userLabel="Divider View">
                                                             <rect key="frame" x="0.0" y="44" width="584" height="1"/>
@@ -273,7 +303,7 @@
                                                                 <constraint firstAttribute="height" constant="107" id="ghN-5P-eDh"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textField>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8CK-Qj-DMV" userLabel="Divider View">
                                                             <rect key="frame" x="0.0" y="151" width="584" height="1"/>
@@ -380,11 +410,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="coverImageView" destination="wEq-RM-MqO" id="HSd-fV-KTR"/>
+                        <outlet property="deleteButton" destination="wfQ-US-2ca" id="NU1-nS-YD3"/>
                         <outlet property="descriptionTextField" destination="ZTU-av-VZy" id="ZYd-UR-OfT"/>
                         <outlet property="nameTextField" destination="JeC-yC-cUr" id="HGK-Ts-ygj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tP2-2Q-pTU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="vhB-z4-0PO">
+                    <connections>
+                        <action selector="uploadPhoto:" destination="pU5-T4-Ozg" id="sZo-8e-xmy"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2449" y="-306"/>
         </scene>

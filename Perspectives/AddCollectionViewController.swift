@@ -18,6 +18,7 @@ class AddCollectionViewController: UITableViewController, UINavigationController
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var coverImageView: UIImageView!
+    @IBOutlet weak var deleteButton: UIButton!
     
     var editedCollectionDelegate: EditCollectionDelegate?
     
@@ -43,6 +44,7 @@ class AddCollectionViewController: UITableViewController, UINavigationController
             self.navigationItem.leftBarButtonItem = nil
         } else {
             self.title = NSLocalizedString("ADD_COLLECTION", comment: "")
+            self.deleteButton.hidden = true
         }
     }
     
@@ -90,6 +92,21 @@ class AddCollectionViewController: UITableViewController, UINavigationController
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    @IBAction func deleteCollection(sender: AnyObject) {
+        let alertController: UIAlertController = UIAlertController(title: NSLocalizedString("DELETE_DETAILS", comment: ""), message: "", preferredStyle: .ActionSheet)
+        let cancelAction: UIAlertAction = UIAlertAction(title: NSLocalizedString("CANCEL", comment: ""), style: .Cancel) { action -> Void in
+            // Do nothing
+        }
+        alertController.addAction(cancelAction)
+        
+        let deleteAction: UIAlertAction = UIAlertAction(title: NSLocalizedString("DELETE_COLLECTION", comment: ""), style: .Destructive) { action -> Void in
+            self.deleteCollection()
+        }
+        alertController.addAction(deleteAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+
     // MARK: - Convenience
     
     func saveEditedCollection() {
@@ -172,6 +189,20 @@ class AddCollectionViewController: UITableViewController, UINavigationController
         picker.delegate = self
         picker.sourceType = .PhotoLibrary
         presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    func deleteCollection() {
+        if let collection = self.collection {
+            let managedContext = CoreDataStack.sharedManager.context
+            managedContext.deleteObject(collection)
+            do {
+                try managedContext.save()
+                print("Deleted collection")
+                self.navigationController!.popToRootViewControllerAnimated(true)
+            } catch let error as NSError  {
+                print("Could not delete \(error), \(error.userInfo)")
+            }
+        }
     }
     
     // MARK: - UIImagePickerControllerDelegate

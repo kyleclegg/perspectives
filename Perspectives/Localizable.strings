@@ -10,6 +10,8 @@
 "MY_COLLECTIONS" = "My Collections";
 "EDIT_COLLECTION" = "Edit Collection";
 "ADD_COLLECTION" = "Add Collection";
+"DELETE_COLLECTION" = "Delete Collection";
+"DELETE_DETAILS" = "This collection will be deleted but its Perspectives will remain.";
 
 // Alerts
 "CANCEL" = "Cancel";
