@@ -9,11 +9,13 @@
 import UIKit
 import CoreData
 import DateTools
+import AVFoundation
 
-class MyCollectionsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate {
+class MyCollectionsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, TileLayoutDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    
+
+    let defaultCellHeight: CGFloat = 140.0
     lazy var fetchedResultsController:NSFetchedResultsController = self.collectionsfetchedResultController()
     
     // MARK: - View lifecycle
@@ -21,6 +23,16 @@ class MyCollectionsViewController: UIViewController, UICollectionViewDataSource,
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("MY_COLLECTIONS", comment: "")
+        
+        if let layout = collectionView?.collectionViewLayout as? TileLayout {
+            layout.delegate = self
+        }
+    }
+    
+    // MARK: - Segue
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
     }
     
     // MARK: - NSFetchedResultsController
@@ -61,6 +73,15 @@ class MyCollectionsViewController: UIViewController, UICollectionViewDataSource,
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.collectionView.reloadData()
+        self.refreshCollections()
+    }
+    
+    // MARK: - RefreshCollectionsDelegate
+    
+    func refreshCollections() {
+        if let layout = collectionView?.collectionViewLayout as? TileLayout {
+            layout.invalidateLayout()
+        }
     }
     
     // MARK: - UICollectionViewDataSource
@@ -114,6 +135,19 @@ class MyCollectionsViewController: UIViewController, UICollectionViewDataSource,
         collectionViewController.collection = collection
         print("collection: \(collection.name!)")
         self.navigationController!.pushViewController(collectionViewController, animated: true)
+    }
+    
+    // MARK: - TileLayoutDelegate
+    
+    func collectionView(collectionView:UICollectionView, heightForPhotoAtIndexPath indexPath:NSIndexPath, withWidth width:CGFloat) -> CGFloat {
+        let collection = fetchedResultsController.objectAtIndexPath(indexPath) as! Collection
+        if let imageData = collection.image {
+            let image = UIImage(data: imageData)!
+            let boundingRect =  CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
+            let rect  = AVMakeRectWithAspectRatioInsideRect(image.size, boundingRect)
+            return rect.size.height
+        }
+        return defaultCellHeight
     }
     
 }

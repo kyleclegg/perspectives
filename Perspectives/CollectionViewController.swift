@@ -84,7 +84,7 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
         let managedContext = CoreDataStack.sharedManager.context
         let fetchRequest = NSFetchRequest(entityName: "Collection")
         fetchRequest.fetchBatchSize = 1
-        fetchRequest.predicate = NSPredicate(format: "collectionId = %@", self.collection!.collectionId!)
+        fetchRequest.predicate = NSPredicate(format: "self == %@", self.collection!.objectID)
         do {
             let fetchResults = (try managedContext.executeFetchRequest(fetchRequest)) as? [Collection]
             self.collection = fetchResults?.first

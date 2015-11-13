@@ -58,15 +58,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.90980392160000001" green="0.91372549020000005" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="beT-m4-LDN">
-                                    <size key="itemSize" width="160" height="140"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
-                                </collectionViewFlowLayout>
+                                <collectionViewLayout key="collectionViewLayout" id="nAT-hX-iPa" customClass="TileLayout" customModule="Perspectives" customModuleProvider="target"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionCell" id="S6e-Ex-l6u" customClass="CollectionCell" customModule="Perspectives" customModuleProvider="target">
-                                        <rect key="frame" x="10" y="74" width="160" height="140"/>
+                                        <rect key="frame" x="0.0" y="64" width="160" height="140"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="160" height="140"/>
@@ -75,8 +70,9 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="texture.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="ola-ur-eYg">
                                                     <rect key="frame" x="0.0" y="0.0" width="160" height="140"/>
                                                     <animations/>
+                                                    <accessibility key="accessibilityConfiguration" label="Collection Photo"/>
                                                 </imageView>
-                                                <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dF2-3c-klb">
+                                                <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dF2-3c-klb" userLabel="Darken View">
                                                     <rect key="frame" x="0.0" y="0.0" width="160" height="140"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -87,6 +83,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sample Collection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="suH-6m-8jP">
                                                             <rect key="frame" x="8" y="16" width="144" height="26"/>
                                                             <animations/>
+                                                            <accessibility key="accessibilityConfiguration" label="Collection Name"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="26" id="Zcl-Mf-lgg"/>
                                                             </constraints>
@@ -97,6 +94,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0je-Rf-b9f">
                                                             <rect key="frame" x="112" y="114" width="40" height="18"/>
                                                             <animations/>
+                                                            <accessibility key="accessibilityConfiguration" label="Time Since Created"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="40" id="QrE-oh-oec"/>
                                                                 <constraint firstAttribute="height" constant="18" id="zis-sS-kEV"/>
@@ -108,6 +106,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8T-r7-czU">
                                                             <rect key="frame" x="8" y="114" width="40" height="18"/>
                                                             <animations/>
+                                                            <accessibility key="accessibilityConfiguration" label="Hearts"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="40" id="VkE-5q-1zi"/>
                                                                 <constraint firstAttribute="height" constant="18" id="Zug-Y4-U1I"/>
@@ -147,6 +146,7 @@
                                             <constraint firstItem="ola-ur-eYg" firstAttribute="top" secondItem="S6e-Ex-l6u" secondAttribute="top" id="nzc-WY-lv2"/>
                                             <constraint firstItem="ola-ur-eYg" firstAttribute="leading" secondItem="S6e-Ex-l6u" secondAttribute="leading" id="xbt-U7-8Fr"/>
                                         </constraints>
+                                        <size key="customSize" width="160" height="140"/>
                                         <connections>
                                             <outlet property="heartsLabel" destination="E8T-r7-czU" id="h3V-LL-9dm"/>
                                             <outlet property="imageView" destination="ola-ur-eYg" id="1RE-yB-rCx"/>
