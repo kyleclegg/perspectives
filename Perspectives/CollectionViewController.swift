@@ -43,7 +43,10 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
     // MARK: - Segue 
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier! == "EditCollectionSegue" {
+        guard let segueIdentifier = segue.identifier else {
+            return
+        }
+        if segueIdentifier == "EditCollectionSegue" {
             let controller = segue.destinationViewController as! AddCollectionViewController
             controller.collection = self.collection!
             controller.editedCollectionDelegate = self
@@ -52,11 +55,22 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
     
     // MARK: - UITableViewDataSource
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        }
         return collection!.perspectives!.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            return tableView.dequeueReusableCellWithIdentifier("AddPerspectiveCell", forIndexPath: indexPath)
+        }
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("PerspectiveCell", forIndexPath: indexPath)
 //        
 //        if let owner = collection.owner {
@@ -76,6 +90,9 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
+        if indexPath.section == 0 {
+            self.performSegueWithIdentifier("AddPerspectiveSegue", sender: self)
+        }
     }
     
     // MARK: - EditCollectionDelegate

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		08C881D7FCC507AE6F5D32B9 /* Pods_Perspectives.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A2C792654B3FC8923651328 /* Pods_Perspectives.framework */; };
+		D71E60D61BFEE1660011845C /* PerspectiveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E60D51BFEE1660011845C /* PerspectiveCell.swift */; };
+		D71E60D81BFEE2690011845C /* AddPerspectiveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E60D71BFEE2690011845C /* AddPerspectiveCell.swift */; };
 		D72303951BF2C49100C2AF25 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72303941BF2C49100C2AF25 /* CollectionViewController.swift */; };
 		D752C0171BE497CF0076BE1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752C0161BE497CF0076BE1E /* AppDelegate.swift */; };
 		D752C0191BE497CF0076BE1E /* MyCollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752C0181BE497CF0076BE1E /* MyCollectionsViewController.swift */; };
@@ -32,6 +34,7 @@
 		D774F1121BF342AC009B1FCC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D774F1111BF342AC009B1FCC /* Localizable.strings */; };
 		D774F1161BF34DD9009B1FCC /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D774F1151BF34DD9009B1FCC /* UIImage+Additions.swift */; };
 		D7BFC88F1BF5E179002B5960 /* TileLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BFC88E1BF5E179002B5960 /* TileLayout.swift */; };
+		D7E7E8271BF62F9F008B895C /* RecordPerspectiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E7E8261BF62F9F008B895C /* RecordPerspectiveViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,8 @@
 		28AAAEA176ECF385CAC26FCF /* Pods-Perspectives.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perspectives.release.xcconfig"; path = "Pods/Target Support Files/Pods-Perspectives/Pods-Perspectives.release.xcconfig"; sourceTree = "<group>"; };
 		5A2C792654B3FC8923651328 /* Pods_Perspectives.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Perspectives.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B18DBE7092C14A43E8986DD4 /* Pods-Perspectives.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perspectives.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perspectives/Pods-Perspectives.debug.xcconfig"; sourceTree = "<group>"; };
+		D71E60D51BFEE1660011845C /* PerspectiveCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerspectiveCell.swift; sourceTree = "<group>"; };
+		D71E60D71BFEE2690011845C /* AddPerspectiveCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPerspectiveCell.swift; sourceTree = "<group>"; };
 		D72303941BF2C49100C2AF25 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		D752C0131BE497CF0076BE1E /* Perspectives.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perspectives.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D752C0161BE497CF0076BE1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +90,7 @@
 		D774F1111BF342AC009B1FCC /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		D774F1151BF34DD9009B1FCC /* UIImage+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
 		D7BFC88E1BF5E179002B5960 /* TileLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileLayout.swift; sourceTree = "<group>"; };
+		D7E7E8261BF62F9F008B895C /* RecordPerspectiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordPerspectiveViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +207,7 @@
 				D752C0181BE497CF0076BE1E /* MyCollectionsViewController.swift */,
 				D752C0471BE893F20076BE1E /* AddCollectionViewController.swift */,
 				D72303941BF2C49100C2AF25 /* CollectionViewController.swift */,
+				D7E7E8261BF62F9F008B895C /* RecordPerspectiveViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -234,8 +241,10 @@
 		D7BFC8901BF5F894002B5960 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D7670EDF1BF4800900388970 /* CollectionCell.swift */,
 				D7BFC88D1BF5E110002B5960 /* Layout */,
+				D7670EDF1BF4800900388970 /* CollectionCell.swift */,
+				D71E60D71BFEE2690011845C /* AddPerspectiveCell.swift */,
+				D71E60D51BFEE1660011845C /* PerspectiveCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -434,7 +443,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D752C0481BE893F20076BE1E /* AddCollectionViewController.swift in Sources */,
+				D71E60D61BFEE1660011845C /* PerspectiveCell.swift in Sources */,
 				D752C0191BE497CF0076BE1E /* MyCollectionsViewController.swift in Sources */,
+				D7E7E8271BF62F9F008B895C /* RecordPerspectiveViewController.swift in Sources */,
 				D752C0171BE497CF0076BE1E /* AppDelegate.swift in Sources */,
 				D752C0711BEB64E00076BE1E /* Perspective+CoreDataProperties.swift in Sources */,
 				D774F1161BF34DD9009B1FCC /* UIImage+Additions.swift in Sources */,
@@ -445,6 +456,7 @@
 				D752C0631BEB51650076BE1E /* Collection.swift in Sources */,
 				D752C07B1BEC9E5D0076BE1E /* Collection+CoreDataProperties.swift in Sources */,
 				D7670EE01BF4800900388970 /* CollectionCell.swift in Sources */,
+				D71E60D81BFEE2690011845C /* AddPerspectiveCell.swift in Sources */,
 				D752C0731BEB66400076BE1E /* SignInViewController.swift in Sources */,
 				D752C07A1BEC9E5D0076BE1E /* User+CoreDataProperties.swift in Sources */,
 				D752C05F1BEB51650076BE1E /* Perspective.swift in Sources */,
