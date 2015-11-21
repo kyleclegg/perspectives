@@ -30,11 +30,12 @@
 		D752C07A1BEC9E5D0076BE1E /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752C0781BEC9E5D0076BE1E /* User+CoreDataProperties.swift */; };
 		D752C07B1BEC9E5D0076BE1E /* Collection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752C0791BEC9E5D0076BE1E /* Collection+CoreDataProperties.swift */; };
 		D752C07E1BEE189C0076BE1E /* texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D752C07D1BEE189C0076BE1E /* texture.jpg */; };
+		D7634C831C00041800AFDBB0 /* ReviewPerspectiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7634C821C00041800AFDBB0 /* ReviewPerspectiveViewController.swift */; };
 		D7670EE01BF4800900388970 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7670EDF1BF4800900388970 /* CollectionCell.swift */; };
 		D774F1121BF342AC009B1FCC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D774F1111BF342AC009B1FCC /* Localizable.strings */; };
 		D774F1161BF34DD9009B1FCC /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D774F1151BF34DD9009B1FCC /* UIImage+Additions.swift */; };
 		D7BFC88F1BF5E179002B5960 /* TileLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BFC88E1BF5E179002B5960 /* TileLayout.swift */; };
-		D7E7E8271BF62F9F008B895C /* RecordPerspectiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E7E8261BF62F9F008B895C /* RecordPerspectiveViewController.swift */; };
+		D7E7E8271BF62F9F008B895C /* AddPerspectiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E7E8261BF62F9F008B895C /* AddPerspectiveViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,11 +87,12 @@
 		D752C0781BEC9E5D0076BE1E /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "../User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D752C0791BEC9E5D0076BE1E /* Collection+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Collection+CoreDataProperties.swift"; path = "../Collection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D752C07D1BEE189C0076BE1E /* texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = texture.jpg; sourceTree = "<group>"; };
+		D7634C821C00041800AFDBB0 /* ReviewPerspectiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewPerspectiveViewController.swift; sourceTree = "<group>"; };
 		D7670EDF1BF4800900388970 /* CollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		D774F1111BF342AC009B1FCC /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		D774F1151BF34DD9009B1FCC /* UIImage+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
 		D7BFC88E1BF5E179002B5960 /* TileLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileLayout.swift; sourceTree = "<group>"; };
-		D7E7E8261BF62F9F008B895C /* RecordPerspectiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordPerspectiveViewController.swift; sourceTree = "<group>"; };
+		D7E7E8261BF62F9F008B895C /* AddPerspectiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPerspectiveViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,7 +209,8 @@
 				D752C0181BE497CF0076BE1E /* MyCollectionsViewController.swift */,
 				D752C0471BE893F20076BE1E /* AddCollectionViewController.swift */,
 				D72303941BF2C49100C2AF25 /* CollectionViewController.swift */,
-				D7E7E8261BF62F9F008B895C /* RecordPerspectiveViewController.swift */,
+				D7E7E8261BF62F9F008B895C /* AddPerspectiveViewController.swift */,
+				D7634C821C00041800AFDBB0 /* ReviewPerspectiveViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -445,7 +448,8 @@
 				D752C0481BE893F20076BE1E /* AddCollectionViewController.swift in Sources */,
 				D71E60D61BFEE1660011845C /* PerspectiveCell.swift in Sources */,
 				D752C0191BE497CF0076BE1E /* MyCollectionsViewController.swift in Sources */,
-				D7E7E8271BF62F9F008B895C /* RecordPerspectiveViewController.swift in Sources */,
+				D7634C831C00041800AFDBB0 /* ReviewPerspectiveViewController.swift in Sources */,
+				D7E7E8271BF62F9F008B895C /* AddPerspectiveViewController.swift in Sources */,
 				D752C0171BE497CF0076BE1E /* AppDelegate.swift in Sources */,
 				D752C0711BEB64E00076BE1E /* Perspective+CoreDataProperties.swift in Sources */,
 				D774F1161BF34DD9009B1FCC /* UIImage+Additions.swift in Sources */,

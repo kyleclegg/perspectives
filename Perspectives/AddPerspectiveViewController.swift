@@ -7,17 +7,27 @@
 //
 
 import UIKit
+import CoreData
 import AVFoundation
 
-class RecordPerspectiveViewController: UIViewController {
+class AddPerspectiveViewController: UITableViewController {
 
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var statusLabel: UILabel!
     
-    var player: AVAudioPlayer!
-    var recorder: AVAudioRecorder!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var dateTextField: UITextField!
+    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var tagsTextField: UITextField!
+    @IBOutlet weak var collectionTextField: UITextField!
+    
+    var collection:Collection?
+    var perspective:Perspective?
+    
+    var player:AVAudioPlayer!
+    var recorder:AVAudioRecorder!
     
     var meterTimer:NSTimer!
     var soundFileURL:NSURL!
@@ -31,12 +41,39 @@ class RecordPerspectiveViewController: UIViewController {
         setSessionPlayback()
         askForNotifications()
         checkHeadphones()
+        
+        populateContent()
+    }
+    
+    func populateContent() {
+        // Populate collection info
+        guard let currentCollection = self.collection else {
+            return
+        }
+        guard let collectionName = currentCollection.name else {
+            return
+        }
+        
+        self.collectionTextField.text! = collectionName
+        self.collectionTextField.enabled = false
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         recorder = nil
         player = nil
+    }
+    
+    // MARK: - Segue
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let segueIdentifier = segue.identifier else {
+            return
+        }
+        if segueIdentifier == "NextSegue" {
+            let controller = segue.destinationViewController as! ReviewPerspectiveViewController
+            controller.perspective = self.perspective
+        }
     }
 
     // MARK: - Actions
@@ -47,6 +84,30 @@ class RecordPerspectiveViewController: UIViewController {
     
     @IBAction func nextPressed(sender: AnyObject) {
         
+        let managedContext = CoreDataStack.sharedManager.context
+        let entity =  NSEntityDescription.entityForName("Perspective", inManagedObjectContext:managedContext)
+        let perspective = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext) as! Perspective
+        
+        if !self.nameTextField.text!.isEmpty {
+            perspective.name = self.nameTextField.text!
+        }
+//        if !self.dateTextField.text!.isEmpty {
+//            
+//        }
+        if !self.descriptionTextField.text!.isEmpty {
+            perspective.about = self.descriptionTextField.text!
+        }
+//        if !self.tagsTextField.text!.isEmpty {
+//            
+//        }
+        if !self.collectionTextField.text!.isEmpty {
+            perspective.collection = self.collection
+            perspective.collectionId = self.collection!.collectionId
+        }
+        
+        self.perspective = perspective
+        
+        self.performSegueWithIdentifier("NextSegue", sender: self)
     }
     
     @IBAction func record(sender: UIButton) {
@@ -109,6 +170,11 @@ class RecordPerspectiveViewController: UIViewController {
     
     // MARK: - Convenience
     
+    func invalidFields() {
+        let alert = UIAlertController(title: "Invalid", message: "Missing inputs yo", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
     
     func updateAudioMeter(timer:NSTimer) {
         
@@ -147,7 +213,6 @@ class RecordPerspectiveViewController: UIViewController {
         }
         
     }
-    
     
     func setupRecorder() {
         let format = NSDateFormatter()
@@ -384,7 +449,7 @@ class RecordPerspectiveViewController: UIViewController {
 
 // MARK: - AVAudioRecorderDelegate
 
-extension RecordPerspectiveViewController : AVAudioRecorderDelegate {
+extension AddPerspectiveViewController : AVAudioRecorderDelegate {
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder,
         successfully flag: Bool) {
@@ -419,7 +484,8 @@ extension RecordPerspectiveViewController : AVAudioRecorderDelegate {
 
 // MARK: - AVAudioPlayerDelegate
 
-extension RecordPerspectiveViewController : AVAudioPlayerDelegate {
+extension AddPerspectiveViewController : AVAudioPlayerDelegate {
+    
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
         print("finished playing \(flag)")
         recordButton.enabled = true

@@ -16,6 +16,8 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var coverImageView: UIImageView!
     
     var collection:Collection?
+    let addRowHeight:CGFloat = 60.0
+    let defaultRowHeight:CGFloat = 80.0
     
     // MARK: - View lifecycle
     
@@ -50,6 +52,10 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
             let controller = segue.destinationViewController as! AddCollectionViewController
             controller.collection = self.collection!
             controller.editedCollectionDelegate = self
+        } else if segueIdentifier == "AddPerspectiveSegue" {
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let controller = navigationController.viewControllers.first as! AddPerspectiveViewController
+            controller.collection = self.collection!
         }
     }
     
@@ -85,6 +91,13 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return addRowHeight
+        }
+        return defaultRowHeight
+    }
+    
     // MARK: - UITableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -92,6 +105,8 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
 
         if indexPath.section == 0 {
             self.performSegueWithIdentifier("AddPerspectiveSegue", sender: self)
+        } else {
+            
         }
     }
     
