@@ -120,7 +120,7 @@ class AddPerspectiveViewController: UITableViewController {
             return
         }
         
-        perspective.audioFilePath = audioFileUrl.path
+        perspective.audioFilePath = audioFileUrl.lastPathComponent
         
         self.perspective = perspective
         
@@ -188,7 +188,7 @@ class AddPerspectiveViewController: UITableViewController {
     // MARK: - Convenience
     
     func invalidFields() {
-        let alert = UIAlertController(title: "Invalid", message: "Missing inputs yo", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Invalid", message: "Missing inputs", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }

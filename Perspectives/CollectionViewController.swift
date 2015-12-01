@@ -130,8 +130,6 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
         let offsetIndexPath = NSIndexPath(forRow: indexPath.row, inSection: indexPath.section - 1)     // offset for the add new perspective section
         let perspective = fetchedResultsController.objectAtIndexPath(offsetIndexPath) as! Perspective
         
-        print("perspective collection id: \(perspective.collection!.objectID)")
-        
         cell.nameLabel.text = perspective.name
         cell.descriptionLabel.text = perspective.about
         
@@ -153,7 +151,11 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
         if indexPath.section == 0 {
             self.performSegueWithIdentifier("AddPerspectiveSegue", sender: self)
         } else {
-            
+            let offsetIndexPath = NSIndexPath(forRow: indexPath.row, inSection: indexPath.section - 1)     // offset for the add new perspective section
+            let perspective = fetchedResultsController.objectAtIndexPath(offsetIndexPath) as! Perspective
+            let reviewPerspectiveViewController = self.storyboard!.instantiateViewControllerWithIdentifier("ReviewPerspectiveViewController") as! ReviewPerspectiveViewController
+            reviewPerspectiveViewController.perspective = perspective
+            self.navigationController!.pushViewController(reviewPerspectiveViewController, animated: true)
         }
     }
     

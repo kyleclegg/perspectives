@@ -22,7 +22,12 @@ class ReviewPerspectiveViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        if let incomingPerspective = self.perspective {
+            if (!incomingPerspective.objectID.temporaryID) {
+                self.navigationItem.rightBarButtonItem = nil
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,7 +50,8 @@ class ReviewPerspectiveViewController: UIViewController {
     func playRecording() {
         var url:NSURL?
         if self.perspective != nil {
-            url = NSURL(fileURLWithPath: self.perspective!.audioFilePath!)
+            let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+            url = NSURL(fileURLWithPath: documentsPath).URLByAppendingPathComponent(self.perspective!.audioFilePath!)
         }
         
         do {
