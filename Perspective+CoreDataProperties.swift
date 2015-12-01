@@ -1,9 +1,9 @@
 //
 //  Perspective+CoreDataProperties.swift
-//  Perspectives
+//  
 //
-//  Created by Kyle Clegg on 11/10/15.
-//  Copyright © 2015 Kyle Clegg. All rights reserved.
+//  Created by Kyle Clegg on 11/30/15.
+//
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
 //  to delete and recreate this implementation file for your updated model.
@@ -19,6 +19,7 @@ extension Perspective {
     @NSManaged var createdDate: NSDate?
     @NSManaged var name: String?
     @NSManaged var perspectiveId: NSNumber?
+    @NSManaged var audioFilePath: String?
     @NSManaged var collection: Collection?
 
 }

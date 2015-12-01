@@ -8,10 +8,15 @@
 
 import UIKit
 import CoreData
+import AVFoundation
 
 class ReviewPerspectiveViewController: UIViewController {
     
+    @IBOutlet weak var playButton: UIButton!
+    
     var perspective:Perspective?
+    
+    var player:AVAudioPlayer!
     
     // MARK: - View lifecycle
 
@@ -20,13 +25,40 @@ class ReviewPerspectiveViewController: UIViewController {
 
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        player = nil
+    }
+    
     // MARK: - Actions
 
+    @IBAction func playRecording(sender: AnyObject) {
+        playRecording()
+    }
+    
     @IBAction func savePerspective(sender: AnyObject) {
         savePerspective()
     }
     
     // MARK: - Convenience
+    
+    func playRecording() {
+        var url:NSURL?
+        if self.perspective != nil {
+            url = NSURL(fileURLWithPath: self.perspective!.audioFilePath!)
+        }
+        
+        do {
+            self.player = try AVAudioPlayer(contentsOfURL: url!)
+            player.delegate = self
+            player.prepareToPlay()
+            player.volume = 1.0
+            player.play()
+        } catch let error as NSError {
+            self.player = nil
+            print(error.localizedDescription)
+        }
+    }
     
     func savePerspective() {
         
@@ -56,4 +88,20 @@ class ReviewPerspectiveViewController: UIViewController {
         }
     }
 
+}
+
+// MARK: - AVAudioPlayerDelegate
+
+extension ReviewPerspectiveViewController : AVAudioPlayerDelegate {
+    
+    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+        print("finished playing \(flag)")
+    }
+    
+    func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer, error: NSError?) {
+        if let e = error {
+            print("\(e.localizedDescription)")
+        }
+        
+    }
 }

@@ -105,6 +105,23 @@ class AddPerspectiveViewController: UITableViewController {
             perspective.collectionId = self.collection!.collectionId
         }
         
+        // Check for valid recording
+        var url:NSURL?
+        if self.recorder != nil {
+            url = self.recorder.url
+        } else if self.soundFileURL != nil {
+            url = self.soundFileURL!
+        }
+        
+        guard let audioFileUrl = url else {
+            let alert = UIAlertController(title: "Invalid", message: "Missing recording", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            return
+        }
+        
+        perspective.audioFilePath = audioFileUrl.path
+        
         self.perspective = perspective
         
         self.performSegueWithIdentifier("NextSegue", sender: self)

@@ -741,8 +741,26 @@
                     <view key="view" contentMode="scaleToFill" id="awA-cd-aOe">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vnX-dv-O1m">
+                                <rect key="frame" x="277" y="105" width="46" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="9Yl-z4-DGX"/>
+                                    <constraint firstAttribute="width" constant="46" id="u7J-Zv-r5I"/>
+                                </constraints>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="playRecording:" destination="V1V-lY-sJr" eventType="touchUpInside" id="Jve-0j-qRs"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vnX-dv-O1m" firstAttribute="top" secondItem="RkR-cM-fu8" secondAttribute="bottom" constant="41" id="U6U-cb-70q"/>
+                            <constraint firstItem="vnX-dv-O1m" firstAttribute="centerX" secondItem="awA-cd-aOe" secondAttribute="centerX" id="wMJ-NO-gIg"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Review" id="6DW-fr-Mns">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="5Y1-39-aw0">
@@ -751,6 +769,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="playButton" destination="vnX-dv-O1m" id="8Yn-VP-B7U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vX1-UB-M1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
