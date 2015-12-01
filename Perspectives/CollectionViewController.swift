@@ -9,13 +9,15 @@
 import UIKit
 import CoreData
 
-class CollectionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, EditCollectionDelegate {
+class CollectionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, EditCollectionDelegate, NSFetchedResultsControllerDelegate {
     
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var coverImageView: UIImageView!
     
     var collection:Collection?
+    lazy var fetchedResultsController:NSFetchedResultsController = self.perspectivesFetchedResultController()
     
     let addRowHeight:CGFloat = 60.0
     let defaultRowHeight:CGFloat = 80.0
@@ -60,17 +62,63 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    // MARK: - NSFetchedResultsController
+    
+    func perspectivesFetchedResultController()
+        -> NSFetchedResultsController {
+            
+            fetchedResultsController =
+                NSFetchedResultsController(
+                    fetchRequest: collectionsFetchRequest(),
+                    managedObjectContext: CoreDataStack.sharedManager.context,
+                    sectionNameKeyPath: nil,
+                    cacheName: nil)
+            fetchedResultsController.delegate = self
+            
+            do {
+                try fetchedResultsController.performFetch()
+            } catch let error as NSError {
+                print("Error: \(error.localizedDescription)")
+                abort()
+            }
+            
+            return fetchedResultsController
+    }
+    
+    func collectionsFetchRequest() -> NSFetchRequest {
+        
+        let fetchRequest = NSFetchRequest(entityName: "Perspective")
+        fetchRequest.fetchBatchSize = 20
+        fetchRequest.predicate = NSPredicate(format: "self.collection == %@", self.collection!.objectID)
+        
+        let sortDescriptor = NSSortDescriptor(key: "createdDate", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        return fetchRequest
+    }
+    
+    // MARK: - NSFetchedResultsControllerDelegate
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.reloadData()
+    }
+    
     // MARK: - UITableViewDataSource
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 2    // add new perspective and perspectives list
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 1
+            return 1    // add new perspective row
         }
-        return self.collection!.perspectives!.count
+        if let sections = fetchedResultsController.sections {
+            let currentSection = sections[section - 1]    // offset for the add new perspective section
+            return currentSection.numberOfObjects
+        }
+        
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -79,16 +127,10 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
         }
         
         let cell = tableView.dequeueReusableCellWithIdentifier("PerspectiveCell", forIndexPath: indexPath) as! PerspectiveCell
-        let perspective = self.collection!.perspectives!.allObjects.first! as! Perspective
-//        
-//        if let owner = collection.owner {
-//            print("collection \(collection.name!)'s owner is \(owner.name!)")
-//        }
-//        else {
-//            print("collection \(collection.name!) has no owner")
-//        }
-//
-        print("perspective collection id: \(perspective.collection!.collectionId)")
+        let offsetIndexPath = NSIndexPath(forRow: indexPath.row, inSection: indexPath.section - 1)     // offset for the add new perspective section
+        let perspective = fetchedResultsController.objectAtIndexPath(offsetIndexPath) as! Perspective
+        
+        print("perspective collection id: \(perspective.collection!.objectID)")
         
         cell.nameLabel.text = perspective.name
         cell.descriptionLabel.text = perspective.about

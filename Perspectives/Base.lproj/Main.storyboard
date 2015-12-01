@@ -980,6 +980,7 @@
                         <outlet property="coverImageView" destination="exc-pL-eYx" id="R1y-xU-njC"/>
                         <outlet property="descriptionLabel" destination="j1E-LJ-Lo3" id="g0a-H4-gUZ"/>
                         <outlet property="nameLabel" destination="t0l-Iy-WT9" id="daB-Xf-Knj"/>
+                        <outlet property="tableView" destination="r0X-WT-5mF" id="SUZ-mv-dRv"/>
                         <segue destination="yPw-CH-0mQ" kind="presentation" identifier="AddPerspectiveSegue" id="lWa-Rk-koU"/>
                     </connections>
                 </viewController>
