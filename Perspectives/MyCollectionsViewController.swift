@@ -16,7 +16,7 @@ class MyCollectionsViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet weak var collectionView: UICollectionView!
 
     let defaultCellHeight: CGFloat = 140.0
-    lazy var fetchedResultsController:NSFetchedResultsController = self.collectionsfetchedResultController()
+    lazy var fetchedResultsController:NSFetchedResultsController = self.collectionsFetchedResultController()
     
     // MARK: - View lifecycle
     
@@ -37,7 +37,7 @@ class MyCollectionsViewController: UIViewController, UICollectionViewDataSource,
     
     // MARK: - NSFetchedResultsController
     
-    func collectionsfetchedResultController()
+    func collectionsFetchedResultController()
         -> NSFetchedResultsController {
             
             fetchedResultsController =

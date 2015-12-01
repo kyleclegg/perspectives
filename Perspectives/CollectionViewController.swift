@@ -16,6 +16,7 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var coverImageView: UIImageView!
     
     var collection:Collection?
+    
     let addRowHeight:CGFloat = 60.0
     let defaultRowHeight:CGFloat = 80.0
     
@@ -69,7 +70,7 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
         if section == 0 {
             return 1
         }
-        return collection!.perspectives!.count
+        return self.collection!.perspectives!.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -77,7 +78,8 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
             return tableView.dequeueReusableCellWithIdentifier("AddPerspectiveCell", forIndexPath: indexPath)
         }
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("PerspectiveCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("PerspectiveCell", forIndexPath: indexPath) as! PerspectiveCell
+        let perspective = self.collection!.perspectives!.allObjects.first! as! Perspective
 //        
 //        if let owner = collection.owner {
 //            print("collection \(collection.name!)'s owner is \(owner.name!)")
@@ -85,8 +87,11 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
 //        else {
 //            print("collection \(collection.name!) has no owner")
 //        }
-//        
-//        cell.textLabel?.text = persepective.name
+//
+        print("perspective collection id: \(perspective.collection!.collectionId)")
+        
+        cell.nameLabel.text = perspective.name
+        cell.descriptionLabel.text = perspective.about
         
         return cell
     }

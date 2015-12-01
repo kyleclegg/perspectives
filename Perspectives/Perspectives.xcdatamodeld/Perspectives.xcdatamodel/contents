@@ -26,7 +26,7 @@
     </entity>
     <elements>
         <element name="Collection" positionX="153" positionY="117" width="128" height="150"/>
-        <element name="Perspective" positionX="115" positionY="-18" width="128" height="133"/>
+        <element name="Perspective" positionX="115" positionY="-18" width="128" height="135"/>
         <element name="User" positionX="-63" positionY="-18" width="128" height="118"/>
     </elements>
 </model>
