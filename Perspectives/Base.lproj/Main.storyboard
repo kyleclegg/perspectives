@@ -428,8 +428,8 @@
         <!--Add Perspective-->
         <scene sceneID="7SV-fr-2TH">
             <objects>
-                <tableViewController id="j36-dm-BQX" customClass="AddPerspectiveViewController" customModule="Perspectives" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="300" sectionHeaderHeight="28" sectionFooterHeight="28" id="yFI-Qu-DNQ">
+                <tableViewController storyboardIdentifier="AddPerspectiveViewController" id="j36-dm-BQX" customClass="AddPerspectiveViewController" customModule="Perspectives" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="300" sectionHeaderHeight="28" sectionFooterHeight="28" id="yFI-Qu-DNQ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
@@ -1003,6 +1003,7 @@
                         <outlet property="nameLabel" destination="t0l-Iy-WT9" id="daB-Xf-Knj"/>
                         <outlet property="tableView" destination="r0X-WT-5mF" id="SUZ-mv-dRv"/>
                         <segue destination="yPw-CH-0mQ" kind="presentation" identifier="AddPerspectiveSegue" id="lWa-Rk-koU"/>
+                        <segue destination="nak-Tp-MAB" kind="show" identifier="ViewPerspectiveSegue" id="7k8-Ww-WDg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2pQ-9V-uXQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1027,6 +1028,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TsM-xE-2eY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2449" y="429"/>
+        </scene>
+        <!--Perspective-->
+        <scene sceneID="gnB-5h-SqP">
+            <objects>
+                <viewController storyboardIdentifier="ViewPerspectiveViewController" id="nak-Tp-MAB" customClass="ViewPerspectiveViewController" customModule="Perspectives" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pAf-im-SIg"/>
+                        <viewControllerLayoutGuide type="bottom" id="wuS-Kg-75X"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Tg4-Ft-ks8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B31-n0-GdH">
+                                <rect key="frame" x="277" y="110" width="46" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Jb1-S9-vi4"/>
+                                    <constraint firstAttribute="width" constant="46" id="NKy-H3-tKK"/>
+                                </constraints>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="playRecording:" destination="nak-Tp-MAB" eventType="touchUpInside" id="MRm-gq-YxT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="B31-n0-GdH" firstAttribute="top" secondItem="pAf-im-SIg" secondAttribute="bottom" constant="46" id="9ba-ug-J5P"/>
+                            <constraint firstItem="B31-n0-GdH" firstAttribute="centerX" secondItem="Tg4-Ft-ks8" secondAttribute="centerX" id="ufR-f7-yAb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Perspective" id="rIE-Ks-NQs">
+                        <barButtonItem key="backBarButtonItem" title=" " id="gQM-kW-dLe"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="KSm-aS-szz">
+                            <connections>
+                                <action selector="editPerspective:" destination="nak-Tp-MAB" id="omX-O3-Xxk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X0s-XZ-oCx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2449" y="1124"/>
         </scene>
     </scenes>
     <resources>

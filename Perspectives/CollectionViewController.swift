@@ -153,9 +153,9 @@ class CollectionViewController: UIViewController, UITableViewDataSource, UITable
         } else {
             let offsetIndexPath = NSIndexPath(forRow: indexPath.row, inSection: indexPath.section - 1)     // offset for the add new perspective section
             let perspective = fetchedResultsController.objectAtIndexPath(offsetIndexPath) as! Perspective
-            let reviewPerspectiveViewController = self.storyboard!.instantiateViewControllerWithIdentifier("ReviewPerspectiveViewController") as! ReviewPerspectiveViewController
-            reviewPerspectiveViewController.perspective = perspective
-            self.navigationController!.pushViewController(reviewPerspectiveViewController, animated: true)
+            let viewPerspectiveViewController = self.storyboard!.instantiateViewControllerWithIdentifier("ViewPerspectiveViewController") as! ViewPerspectiveViewController
+            viewPerspectiveViewController.perspective = perspective
+            self.navigationController!.pushViewController(viewPerspectiveViewController, animated: true)
         }
     }
     

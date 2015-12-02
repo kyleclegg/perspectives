@@ -25,11 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.makeKeyAndVisible()
         }
         
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        let filePaths = try! NSFileManager.defaultManager().subpathsOfDirectoryAtPath(documentsPath)
-        for filePath in filePaths {
-            print(filePath)
-        }
+//        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+//        let filePaths = try! NSFileManager.defaultManager().subpathsOfDirectoryAtPath(documentsPath)
+//        for filePath in filePaths {
+//            print(filePath)
+//        }
         
         return true
     }

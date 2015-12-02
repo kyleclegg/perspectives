@@ -15,6 +15,7 @@ class ReviewPerspectiveViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     
     var perspective:Perspective?
+    var perspectiveIsBeingEdited = false
     
     var player:AVAudioPlayer!
     
@@ -23,11 +24,6 @@ class ReviewPerspectiveViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let incomingPerspective = self.perspective {
-            if (!incomingPerspective.objectID.temporaryID) {
-                self.navigationItem.rightBarButtonItem = nil
-            }
-        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,7 +40,7 @@ class ReviewPerspectiveViewController: UIViewController {
     @IBAction func savePerspective(sender: AnyObject) {
         savePerspective()
     }
-    
+
     // MARK: - Convenience
     
     func playRecording() {
@@ -82,16 +78,41 @@ class ReviewPerspectiveViewController: UIViewController {
 //        }
         
         // Final setup
-        self.perspective!.createdDate = NSDate()
+        let isBeingEdited = !self.perspective!.objectID.temporaryID
+        if (!isBeingEdited) {
+            self.perspective!.createdDate = NSDate()
+        }
         
         let managedContext = CoreDataStack.sharedManager.context
         do {
             try managedContext.save()
-            print("Successfully saved new perspective")
-            self.dismissViewControllerAnimated(true, completion: nil)
+            print("Successfully saved perspective")
+            if (self.perspectiveIsBeingEdited) {
+                let returnViewController = (self.navigationController?.viewControllers[1])! as UIViewController
+                self.navigationController?.popToViewController(returnViewController, animated: true)
+            } else {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
         }
+    }
+    
+    // MARK: - EditCollectionDelegate
+    
+    func editedPerspective() {
+        print("yo")
+//        let managedContext = CoreDataStack.sharedManager.context
+//        let fetchRequest = NSFetchRequest(entityName: "Collection")
+//        fetchRequest.fetchBatchSize = 1
+//        fetchRequest.predicate = NSPredicate(format: "self == %@", self.collection!.objectID)
+//        do {
+//            let fetchResults = (try managedContext.executeFetchRequest(fetchRequest)) as? [Collection]
+//            self.collection = fetchResults?.first
+//        } catch let error as NSError {
+//            print("Fetch failed: \(error.localizedDescription)")
+//        }
+//        self.populateContent()
     }
 
 }

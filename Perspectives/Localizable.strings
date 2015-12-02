@@ -13,6 +13,11 @@
 "DELETE_COLLECTION" = "Delete Collection";
 "DELETE_DETAILS" = "This collection will be deleted but its Perspectives will remain.";
 
+// Perspectives
+"PERSPECTIVES" = "Perspectives";
+"EDIT_PERSPECTIVE" = "Edit Perspective";
+"ADD_PERSPECTIVE" = "Add Perspective";
+
 // Alerts
 "CANCEL" = "Cancel";
 "UPLOAD_PHOTO" = "Upload Photo";

@@ -30,6 +30,7 @@
 		D752C07A1BEC9E5D0076BE1E /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752C0781BEC9E5D0076BE1E /* User+CoreDataProperties.swift */; };
 		D752C07B1BEC9E5D0076BE1E /* Collection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752C0791BEC9E5D0076BE1E /* Collection+CoreDataProperties.swift */; };
 		D752C07E1BEE189C0076BE1E /* texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D752C07D1BEE189C0076BE1E /* texture.jpg */; };
+		D7620A931C0E7E4200008EA3 /* ViewPerspectiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7620A921C0E7E4200008EA3 /* ViewPerspectiveViewController.swift */; };
 		D7634C831C00041800AFDBB0 /* ReviewPerspectiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7634C821C00041800AFDBB0 /* ReviewPerspectiveViewController.swift */; };
 		D7670EE01BF4800900388970 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7670EDF1BF4800900388970 /* CollectionCell.swift */; };
 		D774F1121BF342AC009B1FCC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D774F1111BF342AC009B1FCC /* Localizable.strings */; };
@@ -87,6 +88,7 @@
 		D752C0781BEC9E5D0076BE1E /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "../User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D752C0791BEC9E5D0076BE1E /* Collection+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Collection+CoreDataProperties.swift"; path = "../Collection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D752C07D1BEE189C0076BE1E /* texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = texture.jpg; sourceTree = "<group>"; };
+		D7620A921C0E7E4200008EA3 /* ViewPerspectiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPerspectiveViewController.swift; sourceTree = "<group>"; };
 		D7634C821C00041800AFDBB0 /* ReviewPerspectiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewPerspectiveViewController.swift; sourceTree = "<group>"; };
 		D7670EDF1BF4800900388970 /* CollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		D774F1111BF342AC009B1FCC /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				D72303941BF2C49100C2AF25 /* CollectionViewController.swift */,
 				D7E7E8261BF62F9F008B895C /* AddPerspectiveViewController.swift */,
 				D7634C821C00041800AFDBB0 /* ReviewPerspectiveViewController.swift */,
+				D7620A921C0E7E4200008EA3 /* ViewPerspectiveViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				D752C07B1BEC9E5D0076BE1E /* Collection+CoreDataProperties.swift in Sources */,
 				D7670EE01BF4800900388970 /* CollectionCell.swift in Sources */,
 				D71E60D81BFEE2690011845C /* AddPerspectiveCell.swift in Sources */,
+				D7620A931C0E7E4200008EA3 /* ViewPerspectiveViewController.swift in Sources */,
 				D752C0731BEB66400076BE1E /* SignInViewController.swift in Sources */,
 				D752C07A1BEC9E5D0076BE1E /* User+CoreDataProperties.swift in Sources */,
 				D752C05F1BEB51650076BE1E /* Perspective.swift in Sources */,

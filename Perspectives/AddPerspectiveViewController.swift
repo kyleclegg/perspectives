@@ -25,12 +25,13 @@ class AddPerspectiveViewController: UITableViewController {
     
     var collection:Collection?
     var perspective:Perspective?
+    var perspectiveIsBeingEdited = false
     
     var player:AVAudioPlayer!
     var recorder:AVAudioRecorder!
     
     var meterTimer:NSTimer!
-    var soundFileURL:NSURL!
+    var audioFileURL:NSURL!
     
     // MARK: - View lifecycle
     
@@ -41,11 +42,36 @@ class AddPerspectiveViewController: UITableViewController {
         setSessionPlayback()
         askForNotifications()
         checkHeadphones()
-        
         populateContent()
     }
     
     func populateContent() {
+        // Populate perspective info
+        if let incomingPerspective = self.perspective {
+            if let name = incomingPerspective.name {
+                self.nameTextField.text = name
+            }
+            if let description = incomingPerspective.about {
+                self.descriptionTextField.text = description
+            }
+            if let audioFilePath = incomingPerspective.audioFilePath {
+                let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+                self.audioFileURL = NSURL(fileURLWithPath: documentsPath).URLByAppendingPathComponent(audioFilePath)
+                playButton.enabled = true
+            }
+            
+            // Update nav elements
+            let isBeingEdited = !incomingPerspective.objectID.temporaryID
+            if (isBeingEdited) {
+                self.title = NSLocalizedString("EDIT_PERSPECTIVE", comment: "")
+                self.navigationItem.leftBarButtonItem = nil
+                self.perspectiveIsBeingEdited = true
+            } else {
+                self.title = NSLocalizedString("ADD_PERSPECTIVE", comment: "")
+                // hide delete button
+            }
+        }
+        
         // Populate collection info
         guard let currentCollection = self.collection else {
             return
@@ -73,6 +99,7 @@ class AddPerspectiveViewController: UITableViewController {
         if segueIdentifier == "NextSegue" {
             let controller = segue.destinationViewController as! ReviewPerspectiveViewController
             controller.perspective = self.perspective
+            controller.perspectiveIsBeingEdited = self.perspectiveIsBeingEdited
         }
     }
 
@@ -86,7 +113,11 @@ class AddPerspectiveViewController: UITableViewController {
         
         let managedContext = CoreDataStack.sharedManager.context
         let entity =  NSEntityDescription.entityForName("Perspective", inManagedObjectContext:managedContext)
-        let perspective = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext) as! Perspective
+        var perspective = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext) as! Perspective
+        
+        if (self.perspectiveIsBeingEdited) {
+            perspective = self.perspective!
+        }
         
         if !self.nameTextField.text!.isEmpty {
             perspective.name = self.nameTextField.text!
@@ -109,8 +140,8 @@ class AddPerspectiveViewController: UITableViewController {
         var url:NSURL?
         if self.recorder != nil {
             url = self.recorder.url
-        } else if self.soundFileURL != nil {
-            url = self.soundFileURL!
+        } else if self.audioFileURL != nil {
+            url = self.audioFileURL!
         }
         
         guard let audioFileUrl = url else {
@@ -213,7 +244,7 @@ class AddPerspectiveViewController: UITableViewController {
         if self.recorder != nil {
             url = self.recorder.url
         } else {
-            url = self.soundFileURL!
+            url = self.audioFileURL!
         }
         print("playing \(url)")
         
@@ -238,11 +269,11 @@ class AddPerspectiveViewController: UITableViewController {
         print(currentFileName)
         
         let documentsDirectory = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-        self.soundFileURL = documentsDirectory.URLByAppendingPathComponent(currentFileName)
+        self.audioFileURL = documentsDirectory.URLByAppendingPathComponent(currentFileName)
         
-        if NSFileManager.defaultManager().fileExistsAtPath(soundFileURL.absoluteString) {
+        if NSFileManager.defaultManager().fileExistsAtPath(audioFileURL.absoluteString) {
             // probably won't happen. want to do something about it?
-            print("soundfile \(soundFileURL.absoluteString) exists")
+            print("soundfile \(audioFileURL.absoluteString) exists")
         }
         
         let recordSettings:[String : AnyObject] = [
@@ -254,7 +285,7 @@ class AddPerspectiveViewController: UITableViewController {
         ]
         
         do {
-            recorder = try AVAudioRecorder(URL: soundFileURL, settings: recordSettings)
+            recorder = try AVAudioRecorder(URL: audioFileURL, settings: recordSettings)
             recorder.delegate = self
             recorder.meteringEnabled = true
             recorder.prepareToRecord() // creates/overwrites the file at soundFileURL
@@ -475,10 +506,7 @@ extension AddPerspectiveViewController : AVAudioRecorderDelegate {
             playButton.enabled = true
             recordButton.setTitle("Record", forState:.Normal)
             
-            // iOS8 and later
-            let alert = UIAlertController(title: "Recorder",
-                message: "Finished Recording",
-                preferredStyle: .Alert)
+            let alert = UIAlertController(title: "Recorder", message: "Finished Recording", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "Keep", style: .Default, handler: {action in
                 print("keep was tapped")
             }))
@@ -489,8 +517,7 @@ extension AddPerspectiveViewController : AVAudioRecorderDelegate {
             self.presentViewController(alert, animated:true, completion:nil)
     }
     
-    func audioRecorderEncodeErrorDidOccur(recorder: AVAudioRecorder,
-        error: NSError?) {
+    func audioRecorderEncodeErrorDidOccur(recorder: AVAudioRecorder, error: NSError?) {
             
             if let e = error {
                 print("\(e.localizedDescription)")
