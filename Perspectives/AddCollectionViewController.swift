@@ -93,7 +93,7 @@ class AddCollectionViewController: UITableViewController, UINavigationController
     }
     
     @IBAction func deleteCollection(sender: AnyObject) {
-        let alertController: UIAlertController = UIAlertController(title: NSLocalizedString("DELETE_DETAILS", comment: ""), message: "", preferredStyle: .ActionSheet)
+        let alertController: UIAlertController = UIAlertController(title: NSLocalizedString("DELETE_COLLECTION_DETAILS", comment: ""), message: "", preferredStyle: .ActionSheet)
         let cancelAction: UIAlertAction = UIAlertAction(title: NSLocalizedString("CANCEL", comment: ""), style: .Cancel) { action -> Void in
             // Do nothing
         }
@@ -198,7 +198,7 @@ class AddCollectionViewController: UITableViewController, UINavigationController
             do {
                 try managedContext.save()
                 print("Deleted collection")
-                self.navigationController!.popToRootViewControllerAnimated(true)
+                self.navigationController?.popToRootViewControllerAnimated(true)
             } catch let error as NSError  {
                 print("Could not delete \(error), \(error.userInfo)")
             }

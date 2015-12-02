@@ -11,12 +11,14 @@
 "EDIT_COLLECTION" = "Edit Collection";
 "ADD_COLLECTION" = "Add Collection";
 "DELETE_COLLECTION" = "Delete Collection";
-"DELETE_DETAILS" = "This collection will be deleted but its Perspectives will remain.";
+"DELETE_COLLECTION_DETAILS" = "This collection will be deleted but its Perspectives will remain.";
 
 // Perspectives
 "PERSPECTIVES" = "Perspectives";
 "EDIT_PERSPECTIVE" = "Edit Perspective";
 "ADD_PERSPECTIVE" = "Add Perspective";
+"DELETE_PERSPECTIVE" = "Delete Perspective";
+"DELETE_PERSPECTIVE_DETAILS" = "This perspective and all attachments will be deleted.";
 
 // Alerts
 "CANCEL" = "Cancel";

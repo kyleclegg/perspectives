@@ -16,6 +16,7 @@ class AddPerspectiveViewController: UITableViewController {
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var deletePerspectiveButton: UIButton!
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
@@ -68,7 +69,7 @@ class AddPerspectiveViewController: UITableViewController {
                 self.perspectiveIsBeingEdited = true
             } else {
                 self.title = NSLocalizedString("ADD_PERSPECTIVE", comment: "")
-                // hide delete button
+                self.deletePerspectiveButton.hidden = true
             }
         }
         
@@ -216,7 +217,37 @@ class AddPerspectiveViewController: UITableViewController {
         play()
     }
     
+    @IBAction func deletePerspective(sender: AnyObject) {
+        let alertController: UIAlertController = UIAlertController(title: NSLocalizedString("DELETE_PERSPECTIVE_DETAILS", comment: ""), message: "", preferredStyle: .ActionSheet)
+        let cancelAction: UIAlertAction = UIAlertAction(title: NSLocalizedString("CANCEL", comment: ""), style: .Cancel) { action -> Void in
+            // Do nothing
+        }
+        alertController.addAction(cancelAction)
+        
+        let deleteAction: UIAlertAction = UIAlertAction(title: NSLocalizedString("DELETE_PERSPECTIVE", comment: ""), style: .Destructive) { action -> Void in
+            self.deletePerspective()
+        }
+        alertController.addAction(deleteAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+
     // MARK: - Convenience
+    
+    func deletePerspective() {
+        if let perspective = self.perspective {
+            let managedContext = CoreDataStack.sharedManager.context
+            managedContext.deleteObject(perspective)
+            do {
+                try managedContext.save()
+                print("Deleted perspective")
+                let returnViewController = (self.navigationController?.viewControllers[1])! as UIViewController
+                self.navigationController?.popToViewController(returnViewController, animated: true)
+            } catch let error as NSError  {
+                print("Could not delete \(error), \(error.userInfo)")
+            }
+        }
+    }
     
     func invalidFields() {
         let alert = UIAlertController(title: "Invalid", message: "Missing inputs", preferredStyle: UIAlertControllerStyle.Alert)

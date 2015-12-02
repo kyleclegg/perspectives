@@ -492,11 +492,32 @@
                                 <constraint firstItem="moF-Yi-oGF" firstAttribute="top" secondItem="ut5-K5-ZTl" secondAttribute="bottom" constant="8" symbolic="YES" id="xYH-tn-Czq"/>
                             </constraints>
                         </view>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="ADq-k5-IQ4" userLabel="Footer View">
-                            <rect key="frame" x="0.0" y="564" width="600" height="0.0"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="IyY-hr-ntI">
+                            <rect key="frame" x="0.0" y="564" width="600" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L2r-ag-tR0">
+                                    <rect key="frame" x="235" y="10" width="130" height="30"/>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="130" id="71V-35-Gcl"/>
+                                        <constraint firstAttribute="height" constant="30" id="NWz-7Y-Njh"/>
+                                    </constraints>
+                                    <state key="normal" title="Delete Perspective">
+                                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="deleteCollection:" destination="pU5-T4-Ozg" eventType="touchUpInside" id="z2g-tE-eKC"/>
+                                        <action selector="deletePerspective:" destination="j36-dm-BQX" eventType="touchUpInside" id="jzZ-e5-nNx"/>
+                                    </connections>
+                                </button>
+                            </subviews>
                             <animations/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.90980392160000001" green="0.91372549020000005" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="L2r-ag-tR0" firstAttribute="centerX" secondItem="IyY-hr-ntI" secondAttribute="centerX" id="gQB-Ge-AYI"/>
+                                <constraint firstItem="L2r-ag-tR0" firstAttribute="centerY" secondItem="IyY-hr-ntI" secondAttribute="centerY" id="go6-DS-MI5"/>
+                            </constraints>
                         </view>
                         <sections>
                             <tableViewSection id="Ngf-uU-deO">
@@ -716,6 +737,7 @@
                     <connections>
                         <outlet property="collectionTextField" destination="y1A-a4-bML" id="NJT-db-Bhi"/>
                         <outlet property="dateTextField" destination="y2s-tv-duF" id="LaN-02-afl"/>
+                        <outlet property="deletePerspectiveButton" destination="L2r-ag-tR0" id="iye-6d-qed"/>
                         <outlet property="descriptionTextField" destination="0qx-2o-zo5" id="18S-iT-RPv"/>
                         <outlet property="nameTextField" destination="xIO-am-ojj" id="lxJ-pm-kSD"/>
                         <outlet property="playButton" destination="oDO-6e-Cc1" id="fhN-ir-wgc"/>
